@@ -47,13 +47,14 @@ pub fn handle(day: Day) {
     let example_path = format!("data/examples/{day}.txt");
     let module_path = format!("src/bin/{day}.rs");
 
-    let mut file = match safe_create_file(&module_path) {
-        Ok(file) => file,
-        Err(e) => {
-            eprintln!("Failed to create module file: {e}");
-            process::exit(1);
-        }
-    };
+    let mut file =
+        match safe_create_file(&module_path) {
+            Ok(file) => file,
+            Err(e) => {
+                eprintln!("Failed to create module file: {e}");
+                process::exit(1);
+            }
+        };
 
     match file.write_all(
         MODULE_TEMPLATE

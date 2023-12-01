@@ -36,11 +36,12 @@ fn run_timed<I: Clone, T>(
 
     hook(&result);
 
-    let run = if std::env::args().any(|x| x == "--time") {
-        bench(func, input, &base_time)
-    } else {
-        (base_time, 1)
-    };
+    let run =
+        if std::env::args().any(|x| x == "--time") {
+            bench(func, input, &base_time)
+        } else {
+            (base_time, 1)
+        };
 
     (result, run.0, run.1)
 }
