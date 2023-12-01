@@ -8,11 +8,11 @@ use crate::Day;
 
 const MODULE_TEMPLATE: &str = r#"advent_of_code::solution!(DAY_NUMBER);
 
-pub fn part_one(input: &str) -> Option<u32> {
+pub fn part_one(_input: &str) -> Option<u32> {
     None
 }
 
-pub fn part_two(input: &str) -> Option<u32> {
+pub fn part_two(_input: &str) -> Option<u32> {
     None
 }
 
@@ -47,13 +47,14 @@ pub fn handle(day: Day) {
     let example_path = format!("data/examples/{day}.txt");
     let module_path = format!("src/bin/{day}.rs");
 
-    let mut file = match safe_create_file(&module_path) {
-        Ok(file) => file,
-        Err(e) => {
-            eprintln!("Failed to create module file: {e}");
-            process::exit(1);
-        }
-    };
+    let mut file =
+        match safe_create_file(&module_path) {
+            Ok(file) => file,
+            Err(e) => {
+                eprintln!("Failed to create module file: {e}");
+                process::exit(1);
+            }
+        };
 
     match file.write_all(
         MODULE_TEMPLATE

@@ -223,14 +223,15 @@ mod child_commands {
 
         #[test]
         fn test_patterns_in_input() {
-            let res = parse_exec_time(
-                &[
-                    "Part 1: @ @ @ ( ) ms (2s @ 5 samples)".into(),
-                    "Part 2: 10s (100ms @ 1 samples)".into(),
-                    "".into(),
-                ],
-                day!(1),
-            );
+            let res =
+                parse_exec_time(
+                    &[
+                        "Part 1: @ @ @ ( ) ms (2s @ 5 samples)".into(),
+                        "Part 2: 10s (100ms @ 1 samples)".into(),
+                        "".into(),
+                    ],
+                    day!(1),
+                );
             assert_approx_eq!(res.total_nanos, 2100000000_f64);
             assert_eq!(res.part_1.unwrap(), "2s");
             assert_eq!(res.part_2.unwrap(), "100ms");
