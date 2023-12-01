@@ -4,6 +4,9 @@ on:
     # !Please set a different minute than 51 if you enable this!
     schedule:
         - cron: "23 */6 * * *" # Every 6 hours
+    push: 
+        branches:
+            - 'main'
     workflow_dispatch:
 
 jobs:
@@ -19,6 +22,8 @@ jobs:
                   userId: ${{ secrets.AOC_USER_ID }}
                   sessionCookie: ${{ secrets.AOC_SESSION }}
                   year: ${{ secrets.AOC_YEAR }}
+            - name: benchmark
+              run: cargo time
             - uses: stefanzweifel/git-auto-commit-action@v5
               with:
                   commit_message: "update readme progress"
